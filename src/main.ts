@@ -2,6 +2,7 @@ import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
 import * as octokit from '@octokit/rest';
+import HttpProxyAgent from 'http-proxy-agent/dist/agent';
 
 const { GITHUB_TOKEN } = process.env;
 
@@ -56,7 +57,9 @@ function parseFlake8Output(output: string): Annotation[] {
 }
 
 async function createCheck(check_name: string, title: string, annotations: Annotation[]) {
-  const octokit = new github.GitHub(String(GITHUB_TOKEN));
+  const octokit = new github.GitHub(String(GITHUB_TOKEN), {
+    agent: HttpProxyAgent("http://proxy-chain.intel.com:911")
+  });
   const res = await octokit.checks.listForRef({
     check_name,
     ...github.context.repo,
