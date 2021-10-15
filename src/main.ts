@@ -66,7 +66,7 @@ async function createCheck(check_name: string, title: string, annotations: Annot
 
   console.log(String(GITHUB_TOKEN));
   console.log(check_name);
-  console.log(...github.context.repo);
+  console.log(github.context.repo);
   console.log(github.context.sha);
 
   console.log(res.data);
