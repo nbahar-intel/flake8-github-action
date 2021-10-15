@@ -73,9 +73,12 @@ async function createCheck(check_name: string, title: string, annotations: Annot
 
   const check_run_id = res.data.check_runs[0].id;
 
-  await octokit.checks.update({
+  await octokit.checks.create({
     ...github.context.repo,
-    check_run_id,
+    name: "Flake8",
+    head_sha: github.context.sha,
+    status: "completed",
+    conclusion: "failure",
     output: {
       title,
       summary: `${annotations.length} errors(s) found`,
