@@ -1,0 +1,22 @@
+# Flake8 is a powerful tool that checks our code’s compliance to PEP8. In order for black to work nicely with flake8
+# (or prevent it from spewing out various errors and warnings), we need to list down some error codes to ignore.
+
+# E203 - Colons should not have any space before them.
+# E266 - Too many leading '#' for block comment
+# E501 - Line too long (82 &gt; 79 characters)
+# W503 - Line break occurred before a binary operator
+# F403 - 'from module import *' used; unable to detect undefined names
+# F401 - Module imported but unused (F401)
+# E712 - Comparison to true should be 'if cond is true:' or 'if cond:'. Reason: tinydb queries
+
+[flake8]
+ignore = E203, E266, E501, W503, F403, F401, E712
+filename =
+    *.py,
+    *.oss
+exclude = .git,venv
+per-file-ignores =
+    conf.py: F405
+max-line-length = 120
+max-complexity = 18
+select = B,C,E,F,W,T4,B9

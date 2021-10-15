@@ -5,6 +5,7 @@
   "description": "Run flake 8",
   "main": "lib/main.js",
   "scripts": {
+    "run": "lib/main.js",
     "build": "tsc",
     "test": "jest"
   },
@@ -21,8 +22,9 @@
   "author": "suo",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.0.0",
-    "@actions/github": "^1.0.0",
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@octokit/rest": "15.18.3",
     "@actions/exec": "^1.0.0"
   },
   "devDependencies": {
