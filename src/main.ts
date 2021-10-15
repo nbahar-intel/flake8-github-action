@@ -58,16 +58,17 @@ function parseFlake8Output(output: string): Annotation[] {
 async function createCheck(check_name: string, title: string, annotations: Annotation[]) {
   const octokit = github.getOctokit(String(GITHUB_TOKEN));
   const res = await octokit.checks.listForRef({
-    check_name,
-    ...github.context.repo,
+    owner: "intel-restricted",
+    check_name: check_name,
+    repo: "applications.validation.test-generators.oasis.oasis-content",
     ref: github.context.sha
   });
 
-  console.log(GITHUB_TOKEN);
+  console.log(String(GITHUB_TOKEN));
   console.log(check_name);
   console.log(...github.context.repo);
   console.log(github.context.sha);
-  
+
   console.log(res.data);
 
   const check_run_id = res.data.check_runs[0].id;
