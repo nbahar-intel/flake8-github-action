@@ -74,7 +74,8 @@ async function createCheck(check_name: string, title: string, annotations: Annot
   // const check_run_id = res.data.check_runs[0].id;
 
   await octokit.checks.create({
-    ...github.context.repo,
+    owner: "intel-restricted",
+    repo: "applications.validation.test-generators.oasis.oasis-content",
     name: "Flake8",
     head_sha: github.context.sha,
     status: "completed",
@@ -85,6 +86,15 @@ async function createCheck(check_name: string, title: string, annotations: Annot
       annotations
     }
   });
+
+  const res2 = await octokit.checks.listForRef({
+    owner: "intel-restricted",
+    check_name: check_name,
+    repo: "applications.validation.test-generators.oasis.oasis-content",
+    ref: github.context.sha
+  });
+
+  console.log(res2.data);
 }
 
 async function run() {
